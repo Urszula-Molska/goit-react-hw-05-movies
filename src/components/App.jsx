@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './Home/Home.jsx';
 import { Movie } from './Movie/Movie.jsx';
@@ -7,8 +7,6 @@ import { fetchTrending, fetchDetails } from './Api/Api.js';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-  const [page, setPage] = useState(1);
   const [movie, setMovie] = useState([]);
   const [movieCategories, setMovieCategories] = useState('hmm');
 
@@ -17,7 +15,6 @@ export const App = () => {
       //setLoading(true);
       const response = await fetchTrending();
       setMovies(response.results);
-      setTotalPages(response.total_pages);
     };
     fetchMovies();
   }, []);
