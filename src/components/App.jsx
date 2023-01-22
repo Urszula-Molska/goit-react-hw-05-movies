@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './Home/Home.jsx';
-import { Movie } from './Movie/Movie.jsx';
+import { MovieDetails } from './MovieDetails/MovieDetails.jsx';
+import { Cast } from './Cast/Cast.jsx';
+import { Reviews } from './Reviews/Reviews.jsx';
 import '../index.css';
 import { fetchTrending, fetchDetails } from './Api/Api.js';
 
@@ -45,13 +47,16 @@ export const App = () => {
           <Route
             path="/goit-react-hw-05-movies/:movieId"
             element={
-              <Movie
+              <MovieDetails
                 movies={movies}
                 movie={movie}
                 movieCategories={movieCategories}
               />
             }
-          />
+          >
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
           <Route path="*" element={<Home movies={movies} />} />
         </Routes>
       </div>
