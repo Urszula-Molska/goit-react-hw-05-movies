@@ -1,8 +1,4 @@
-import { useParams } from 'react-router-dom';
-//import {fetchData}
-
 export const Movie = ({ movie, movieCategories }) => {
-  const { movieId } = useParams();
   const date = new Date(movie.release_date);
   const releaseDate = date.getFullYear();
   const image = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
