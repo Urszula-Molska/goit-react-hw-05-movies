@@ -13,7 +13,7 @@ export const Home = ({ movies, getMovieById }) => {
                 getMovieById(movie.id);
               }}
             >
-              <Link to={`${movie.id}`}>{movie.title}</Link>
+              <Link to={`movies/:${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
         </ul>

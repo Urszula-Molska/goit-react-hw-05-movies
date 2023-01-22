@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { Home } from './Home/Home.jsx';
 import { MovieDetails } from './MovieDetails/MovieDetails.jsx';
 import { Cast } from './Cast/Cast.jsx';
@@ -54,7 +54,44 @@ export const App = () => {
   return (
     <>
       <div className="App">
+        <header>
+          <nav>
+            <NavLink className="navLink" to="/" end>
+              Home
+            </NavLink>
+            <NavLink className="navLink" to="/movies">
+              Movies
+            </NavLink>
+          </nav>
+        </header>
         <Routes>
+          <Route
+            path="/"
+            element={<Home movies={movies} getMovieById={getMovieById} />}
+          />
+          <Route
+            path="/movies/:movieId"
+            element={
+              <MovieDetails
+                movies={movies}
+                movie={movie}
+                movieCategories={movieCategories}
+              />
+            }
+          >
+            <Route path="cast" element={<Cast movieCast={movieCast} />} />
+            <Route
+              path="reviews"
+              element={<Reviews movieReviews={movieReviews} />}
+            />
+          </Route>
+          <Route path="*" element={<Home movies={movies} />} />
+        </Routes>
+      </div>
+    </>
+  );
+};
+/*<Routes>
           <Route
             path="/goit-react-hw-05-movies/"
             element={<Home movies={movies} getMovieById={getMovieById} />}
@@ -80,4 +117,4 @@ export const App = () => {
       </div>
     </>
   );
-};
+};*/
