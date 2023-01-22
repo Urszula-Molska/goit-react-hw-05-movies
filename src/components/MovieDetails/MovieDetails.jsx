@@ -36,10 +36,6 @@ export const MovieDetails = ({ movie, movieCategories }) => {
   );
 };
 MovieDetails.propTypes = {
-  movie: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    )
-  ),
+  movie: PropTypes.object,
   movieCategories: PropTypes.string,
 };

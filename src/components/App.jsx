@@ -17,7 +17,7 @@ import {
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState({});
   const [movieCategories, setMovieCategories] = useState('');
   const [movieCast, setMovieCast] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
@@ -63,7 +63,6 @@ export const App = () => {
         setMoviesByTerm(response);
       } else {
         setMoviesByTerm(response);
-        console.log(response);
       }
     };
     if (query.length > 0) {

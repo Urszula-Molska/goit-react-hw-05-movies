@@ -45,7 +45,6 @@ export const fetchSearch = async query => {
   const URL = `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&query=${query}`;
   try {
     const response = await axios.get(`${URL}`);
-    console.log(response.data.results);
     return response.data.results;
   } catch (error) {
     console.error(error);

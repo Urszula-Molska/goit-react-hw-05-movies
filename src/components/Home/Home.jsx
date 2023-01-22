@@ -23,10 +23,6 @@ export const Home = ({ movies, getMovieById }) => {
   );
 };
 Home.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    )
-  ),
+  movies: PropTypes.arrayOf(PropTypes.object),
   getMovieById: PropTypes.func,
 };

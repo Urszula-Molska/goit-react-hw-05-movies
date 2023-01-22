@@ -50,9 +50,5 @@ Movies.propTypes = {
   query: PropTypes.string,
   handleSubmit: PropTypes.func,
   getMovieById: PropTypes.func,
-  moviesByTerm: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    )
-  ),
+  moviesByTerm: PropTypes.arrayOf(PropTypes.objectOf),
 };
