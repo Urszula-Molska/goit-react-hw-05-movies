@@ -18,7 +18,7 @@ import {
 export const App = () => {
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState([]);
-  const [movieCategories, setMovieCategories] = useState('hmm');
+  const [movieCategories, setMovieCategories] = useState('');
   const [movieCast, setMovieCast] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
   const [query, setQuery] = useState('');

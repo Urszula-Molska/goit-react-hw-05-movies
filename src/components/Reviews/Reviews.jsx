@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Reviews = ({ movieReviews }) => {
   return (
     <>
@@ -16,4 +18,11 @@ export const Reviews = ({ movieReviews }) => {
       )}
     </>
   );
+};
+Reviews.propTypes = {
+  movieReviews: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    )
+  ),
 };

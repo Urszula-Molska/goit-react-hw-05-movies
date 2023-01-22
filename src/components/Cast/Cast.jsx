@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Cast = ({ movieCast }) => {
   //const actorImage = `https://image.tmdb.org/t/p/w500/${}`;
   return (
@@ -18,4 +20,12 @@ export const Cast = ({ movieCast }) => {
       </ul>
     </>
   );
+};
+
+Cast.propTypes = {
+  movieCast: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    )
+  ),
 };

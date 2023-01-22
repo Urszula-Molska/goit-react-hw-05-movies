@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link, Outlet } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 
@@ -33,4 +34,12 @@ export const MovieDetails = ({ movie, movieCategories }) => {
       </main>
     </>
   );
+};
+MovieDetails.propTypes = {
+  movie: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    )
+  ),
+  movieCategories: PropTypes.string,
 };
