@@ -32,11 +32,6 @@ export const App = () => {
     fetchMovies();
   }, []);
 
-  /*const getMovieById = movieId => {
-    const movie = movies.find(movie => movie.id === movieId);
-    setMovie(movie);
-  };*/
-
   const getMovieById = async movieId => {
     const movie = await fetchDetails(movieId);
     const categories = movie.genres;
@@ -129,30 +124,8 @@ export const App = () => {
     </>
   );
 };
-/*<Routes>
-          <Route
-            path="/goit-react-hw-05-movies/"
-            element={<Home movies={movies} getMovieById={getMovieById} />}
-          />
-          <Route
-            path="/goit-react-hw-05-movies/:movieId"
-            element={
-              <MovieDetails
-                movies={movies}
-                movie={movie}
-                movieCategories={movieCategories}
-              />
-            }
-          >
-            <Route path="cast" element={<Cast movieCast={movieCast} />} />
-            <Route
-              path="reviews"
-              element={<Reviews movieReviews={movieReviews} />}
-            />
-          </Route>
-          <Route path="*" element={<Home movies={movies} />} />
-        </Routes>
-      </div>
-    </>
-  );
-};*/
+
+/*const getMovieById = movieId => {
+    const movie = movies.find(movie => movie.id === movieId);
+    setMovie(movie);
+  };*/
