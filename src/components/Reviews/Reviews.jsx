@@ -20,10 +20,6 @@ export const Reviews = ({ movieReviews }) => {
   );
 };
 Reviews.propTypes = {
-  movieReviews: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    )
-  ),
+  movieReviews: PropTypes.arrayOf(PropTypes.object),
 };
 export default Reviews;

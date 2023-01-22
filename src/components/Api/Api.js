@@ -35,7 +35,7 @@ export const fetchReviews = async movieId => {
   const URL = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${ApiKey}&page=1`;
   try {
     const response = await axios.get(`${URL}`);
-    return response.data;
+    return response.data.results;
   } catch (error) {
     console.error(error);
   }

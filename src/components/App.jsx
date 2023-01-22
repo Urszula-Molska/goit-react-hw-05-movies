@@ -45,7 +45,7 @@ export const App = () => {
 
     const movieReviews = await fetchReviews(movieId);
     if (movieReviews.length > 0) {
-      setMovieReviews(movieReviews.results);
+      setMovieReviews(movieReviews);
     }
   };
 
