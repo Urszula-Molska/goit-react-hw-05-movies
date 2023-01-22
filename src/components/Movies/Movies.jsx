@@ -52,3 +52,4 @@ Movies.propTypes = {
   getMovieById: PropTypes.func,
   moviesByTerm: PropTypes.arrayOf(PropTypes.objectOf),
 };
+export default Movies;

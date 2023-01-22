@@ -1,11 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Home } from './Home/Home.jsx';
-import { MovieDetails } from './MovieDetails/MovieDetails.jsx';
-import { Cast } from './Cast/Cast.jsx';
-import { Reviews } from './Reviews/Reviews.jsx';
-import { Movies } from './Movies/Movies.jsx';
 import '../index.css';
 import {
   fetchTrending,
@@ -14,6 +9,12 @@ import {
   fetchReviews,
   fetchSearch,
 } from './Api/Api.js';
+
+const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails.jsx'));
+const Home = lazy(() => import('./Home/Home.jsx'));
+const Cast = lazy(() => import('./Cast/Cast.jsx'));
+const Reviews = lazy(() => import('./Reviews/Reviews.jsx'));
+const Movies = lazy(() => import('./Movies/Movies.jsx'));
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
@@ -85,46 +86,46 @@ export const App = () => {
             </NavLink>
           </nav>
         </header>
-        <Routes>
-          <Route
-            path="/"
-            element={<Home movies={movies} getMovieById={getMovieById} />}
-          />
-          <Route
-            path="/movies"
-            element={
-              <Movies
-                handleSubmit={handleSubmit}
-                query={query}
-                moviesByTerm={moviesByTerm}
-                getMovieById={getMovieById}
-              />
-            }
-          />
-          <Route
-            path="/movies/:movieId"
-            element={
-              <MovieDetails
-                movies={movies}
-                movie={movie}
-                movieCategories={movieCategories}
-              />
-            }
-          >
-            <Route path="cast" element={<Cast movieCast={movieCast} />} />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
             <Route
-              path="reviews"
-              element={<Reviews movieReviews={movieReviews} />}
+              path="/"
+              element={<Home movies={movies} getMovieById={getMovieById} />}
             />
-          </Route>
-          <Route path="*" element={<Home movies={movies} />} />
-        </Routes>
+
+            <Route
+              path="/movies"
+              element={
+                <Movies
+                  handleSubmit={handleSubmit}
+                  query={query}
+                  moviesByTerm={moviesByTerm}
+                  getMovieById={getMovieById}
+                />
+              }
+            />
+
+            <Route
+              path="/movies/:movieId"
+              element={
+                <MovieDetails
+                  movies={movies}
+                  movie={movie}
+                  movieCategories={movieCategories}
+                />
+              }
+            >
+              <Route path="cast" element={<Cast movieCast={movieCast} />} />
+              <Route
+                path="reviews"
+                element={<Reviews movieReviews={movieReviews} />}
+              />
+            </Route>
+            <Route path="*" element={<Home movies={movies} />} />
+          </Routes>
+        </Suspense>
       </div>
     </>
   );
 };
-
-/*const getMovieById = movieId => {
-    const movie = movies.find(movie => movie.id === movieId);
-    setMovie(movie);
-  };*/

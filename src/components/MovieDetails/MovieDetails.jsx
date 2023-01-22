@@ -1,6 +1,6 @@
-import { useLocation } from 'react-router-dom';
+import { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 
 export const MovieDetails = ({ movie, movieCategories }) => {
@@ -42,7 +42,9 @@ export const MovieDetails = ({ movie, movieCategories }) => {
             <Link to="reviews">Reviews</Link>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={<div>Loading subpage...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </>
   );
@@ -51,3 +53,4 @@ MovieDetails.propTypes = {
   movie: PropTypes.object,
   movieCategories: PropTypes.string,
 };
+export default MovieDetails;

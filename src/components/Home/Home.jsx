@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export const Home = ({ movies, getMovieById }) => {
+const Home = ({ movies, getMovieById }) => {
   return (
     <>
       <main>
@@ -26,3 +26,4 @@ Home.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object),
   getMovieById: PropTypes.func,
 };
+export default Home;

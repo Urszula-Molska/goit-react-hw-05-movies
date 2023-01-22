@@ -26,3 +26,4 @@ Reviews.propTypes = {
     )
   ),
 };
+export default Reviews;

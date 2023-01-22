@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 export const Cast = ({ movieCast }) => {
-  //const actorImage = `https://image.tmdb.org/t/p/w500/${}`;
   return (
     <>
       <h2>Cast</h2>
@@ -25,3 +24,4 @@ export const Cast = ({ movieCast }) => {
 Cast.propTypes = {
   movieCast: PropTypes.arrayOf(PropTypes.objectOf),
 };
+export default Cast;
