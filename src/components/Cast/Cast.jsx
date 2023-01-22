@@ -23,9 +23,5 @@ export const Cast = ({ movieCast }) => {
 };
 
 Cast.propTypes = {
-  movieCast: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    )
-  ),
+  movieCast: PropTypes.arrayOf(PropTypes.objectOf),
 };
