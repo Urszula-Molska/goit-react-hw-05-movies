@@ -47,7 +47,7 @@ export const App = () => {
     console.log(movieCast.cast);
 
     const movieReviews = await fetchReviews(movieId);
-    setMovieReviews(movieReviews);
+    setMovieReviews(movieReviews.results);
     console.log(movieReviews);
   };
 
@@ -70,7 +70,10 @@ export const App = () => {
             }
           >
             <Route path="cast" element={<Cast movieCast={movieCast} />} />
-            <Route path="reviews" element={<Reviews />} />
+            <Route
+              path="reviews"
+              element={<Reviews movieReviews={movieReviews} />}
+            />
           </Route>
           <Route path="*" element={<Home movies={movies} />} />
         </Routes>
