@@ -17,6 +17,7 @@ export const App = () => {
   const [movie, setMovie] = useState([]);
   const [movieCategories, setMovieCategories] = useState('hmm');
   const [movieCast, setMovieCast] = useState([]);
+  const [movieReviews, setMovieReviews] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -44,6 +45,10 @@ export const App = () => {
     const movieCast = await fetchCast(movieId);
     setMovieCast(movieCast.cast);
     console.log(movieCast.cast);
+
+    const movieReviews = await fetchReviews(movieId);
+    setMovieReviews(movieReviews);
+    console.log(movieReviews);
   };
 
   return (
