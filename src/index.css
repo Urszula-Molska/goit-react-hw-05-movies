@@ -37,8 +37,8 @@ code {
 }
 
 .navLink.active {
-  color: white;
-  background-color: orangered;
+  color: rgb(255, 255, 255);
+  background-color: #f96801;
 }
 
 header {

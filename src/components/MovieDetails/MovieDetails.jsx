@@ -1,7 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 
-export const MovieDetails = ({ movie, movieCategories, movieCast }) => {
+export const MovieDetails = ({ movie, movieCategories }) => {
   const date = new Date(movie.release_date);
   const releaseDate = date.getFullYear();
   const image = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
