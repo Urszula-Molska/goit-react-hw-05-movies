@@ -16,7 +16,7 @@ code {
 
 .App {
   max-width: 1200px;
-  padding: 50px;
+  padding: 10px 40px;
   display: flex;
   flex-direction: column;
   align-content: center;

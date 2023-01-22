@@ -5,12 +5,18 @@ import { MovieDetails } from './MovieDetails/MovieDetails.jsx';
 import { Cast } from './Cast/Cast.jsx';
 import { Reviews } from './Reviews/Reviews.jsx';
 import '../index.css';
-import { fetchTrending, fetchDetails } from './Api/Api.js';
+import {
+  fetchTrending,
+  fetchDetails,
+  fetchCast,
+  fetchReviews,
+} from './Api/Api.js';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState([]);
   const [movieCategories, setMovieCategories] = useState('hmm');
+  const [movieCast, setMovieCast] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -34,6 +40,10 @@ export const App = () => {
     setMovieCategories(genres);
     console.log(movieCategories);
     console.log(movie);
+
+    const movieCast = await fetchCast(movieId);
+    setMovieCast(movieCast.cast);
+    console.log(movieCast.cast);
   };
 
   return (
@@ -54,7 +64,7 @@ export const App = () => {
               />
             }
           >
-            <Route path="cast" element={<Cast />} />
+            <Route path="cast" element={<Cast movieCast={movieCast} />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
           <Route path="*" element={<Home movies={movies} />} />
