@@ -9,7 +9,7 @@ export const Cast = ({ movieCast }) => {
             <img
               style={{ width: '200px' }}
               src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
-              alt={`picture of ${cast.name}`}
+              alt={`${cast.name}'s portrait`}
             />
             <p>{cast.name}</p>
             <p>character: {cast.character}</p>
