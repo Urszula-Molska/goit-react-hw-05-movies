@@ -1,8 +1,38 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './Movies.module.css';
+import { fetchSearch } from '../Api/Api.js';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-export const Movies = ({ handleSubmit, moviesByTerm, getMovieById, query }) => {
+export const Movies = ({ getMovieById }) => {
+  const [query, setQuery] = useState('');
+  const [moviesByTerm, setMoviesByTerm] = useState([]);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+    const querySearch = form.elements.searchQuery.value;
+    const query = querySearch.trim();
+    setQuery(query);
+
+    const fetchMoviesByterm = async query => {
+      const response = await fetchSearch(query);
+
+      if (response.length === 0 && query.length > 0) {
+        Notify.info(`There is no records that matches:  ${query}  !`);
+        setMoviesByTerm(response);
+      } else {
+        setMoviesByTerm(response);
+      }
+    };
+    if (query.length > 0) {
+      fetchMoviesByterm(query);
+    } else {
+      Notify.info("You didn't write anything !");
+    }
+  };
+
   return (
     <main>
       <div className={css.searchbar}>

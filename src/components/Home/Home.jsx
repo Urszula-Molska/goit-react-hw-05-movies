@@ -1,7 +1,19 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { fetchTrending } from '../Api/Api.js';
 
-const Home = ({ movies, getMovieById }) => {
+const Home = ({ getMovieById }) => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const response = await fetchTrending();
+      setMovies(response.results);
+    };
+    fetchMovies();
+  }, []);
+
   return (
     <>
       <main>
