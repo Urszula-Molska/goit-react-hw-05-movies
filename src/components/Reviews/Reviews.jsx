@@ -1,6 +1,28 @@
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchReviews } from '../Api/Api.js';
+import { nanoid } from 'nanoid';
 
-export const Reviews = ({ movieReviews }) => {
+export const Reviews = () => {
+  const { movieId } = useParams();
+  const [movieReviews, setMovieReviews] = useState([]);
+
+  const createId = () => {
+    const idReview = nanoid();
+    return idReview;
+  };
+
+  useEffect(() => {
+    const getReviews = async () => {
+      const movieReviews = await fetchReviews(movieId);
+      if (movieReviews.length > 0) {
+        setMovieReviews(movieReviews);
+      }
+    };
+    getReviews(movieId);
+  }, []);
+
   return (
     <>
       <h2>Reviews</h2>
@@ -9,7 +31,7 @@ export const Reviews = ({ movieReviews }) => {
       ) : (
         <ul>
           {movieReviews.map(review => (
-            <li key={review.cretaed_at}>
+            <li key={createId()}>
               <h3>author: {review.author}</h3>
               <p>{review.content}</p>
             </li>

@@ -1,15 +1,33 @@
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import css from './MovieDetails.module.css';
+import { fetchDetails } from '../Api/Api.js';
 
-export const MovieDetails = ({ movie, movieCategories }) => {
+export const MovieDetails = () => {
+  const [movie, setMovie] = useState({});
+  const [movieCategories, setMovieCategories] = useState('');
+  const { movieId } = useParams();
+
   const location = useLocation();
   const date = new Date(movie.release_date);
   const releaseDate = date.getFullYear();
   const image = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   const backLinkHrefHome = location.state?.from ?? '/';
   const backLinkHrefMovies = location.state?.from ?? '/movies';
+
+  const getMovieById = async movieId => {
+    const movie = await fetchDetails(movieId);
+    const categories = movie.genres;
+    const genres = categories.map(object => object.name).join(', ');
+    setMovie(movie);
+    setMovieCategories(genres);
+  };
+
+  useEffect(() => {
+    getMovieById(movieId);
+  }, []);
 
   return (
     <>

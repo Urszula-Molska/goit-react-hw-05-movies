@@ -1,6 +1,20 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { fetchCast } from '../Api/Api.js';
 
-export const Cast = ({ movieCast }) => {
+export const Cast = () => {
+  const { movieId } = useParams();
+  const [movieCast, setMovieCast] = useState([]);
+
+  useEffect(() => {
+    const getCast = async () => {
+      const movieCast = await fetchCast(movieId);
+      setMovieCast(movieCast.cast);
+    };
+    getCast(movieId);
+  }, []);
+
   return (
     <>
       <h2>Cast</h2>

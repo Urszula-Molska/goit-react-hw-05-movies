@@ -1,6 +1,6 @@
-import { useState, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
-import { fetchDetails, fetchCast, fetchReviews } from './Api/Api.js';
+
 import '../index.css';
 
 const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails.jsx'));
@@ -10,27 +10,6 @@ const Reviews = lazy(() => import('./Reviews/Reviews.jsx'));
 const Movies = lazy(() => import('./Movies/Movies.jsx'));
 
 export const App = () => {
-  const [movie, setMovie] = useState({});
-  const [movieCategories, setMovieCategories] = useState('');
-  const [movieCast, setMovieCast] = useState([]);
-  const [movieReviews, setMovieReviews] = useState([]);
-
-  const getMovieById = async movieId => {
-    const movie = await fetchDetails(movieId);
-    const categories = movie.genres;
-    const genres = categories.map(object => object.name).join(', ');
-    setMovie(movie);
-    setMovieCategories(genres);
-
-    const movieCast = await fetchCast(movieId);
-    setMovieCast(movieCast.cast);
-
-    const movieReviews = await fetchReviews(movieId);
-    if (movieReviews.length > 0) {
-      setMovieReviews(movieReviews);
-    }
-  };
-
   return (
     <>
       <div className="App">
@@ -47,22 +26,11 @@ export const App = () => {
 
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/" element={<Home getMovieById={getMovieById} />} />
-            <Route
-              path="/movies"
-              element={<Movies getMovieById={getMovieById} />}
-            />
-            <Route
-              path="/movies/:movieId"
-              element={
-                <MovieDetails movie={movie} movieCategories={movieCategories} />
-              }
-            >
-              <Route path="cast" element={<Cast movieCast={movieCast} />} />
-              <Route
-                path="reviews"
-                element={<Reviews movieReviews={movieReviews} />}
-              />
+            <Route path="/" element={<Home />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

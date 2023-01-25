@@ -5,7 +5,7 @@ import css from './Movies.module.css';
 import { fetchSearch } from '../Api/Api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-export const Movies = ({ getMovieById }) => {
+export const Movies = () => {
   const [query, setQuery] = useState('');
   const [moviesByTerm, setMoviesByTerm] = useState([]);
 
@@ -58,13 +58,8 @@ export const Movies = ({ getMovieById }) => {
               <h2>Query: {query}</h2>
               <ul>
                 {moviesByTerm.map(movie => (
-                  <li
-                    key={movie.id}
-                    onClick={() => {
-                      getMovieById(movie.id);
-                    }}
-                  >
-                    <Link to={`:${movie.id}`}>{movie.title}</Link>
+                  <li key={movie.id}>
+                    <Link to={`${movie.id}`}>{movie.title}</Link>
                   </li>
                 ))}
               </ul>
@@ -83,3 +78,7 @@ Movies.propTypes = {
   moviesByTerm: PropTypes.arrayOf(PropTypes.objectOf),
 };
 export default Movies;
+
+/*onClick={() => {
+                      getMovieById(movie.id);
+                    }}*/

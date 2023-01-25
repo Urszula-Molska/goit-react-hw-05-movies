@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { fetchTrending } from '../Api/Api.js';
 
-const Home = ({ getMovieById }) => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -20,13 +20,8 @@ const Home = ({ getMovieById }) => {
         <h2>Trending today: </h2>
         <ul>
           {movies.map(movie => (
-            <li
-              key={movie.id}
-              onClick={() => {
-                getMovieById(movie.id);
-              }}
-            >
-              <Link to={`movies/:${movie.id}`}>{movie.title}</Link>
+            <li key={movie.id}>
+              <Link to={`movies/${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
         </ul>
@@ -39,3 +34,6 @@ Home.propTypes = {
   getMovieById: PropTypes.func,
 };
 export default Home;
+
+/*onClick={() => {
+getMovieById(movie.id) }}*/
