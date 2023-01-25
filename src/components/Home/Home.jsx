@@ -34,5 +34,3 @@ Home.propTypes = {
   getMovieById: PropTypes.func,
 };
 export default Home;
-
-/
