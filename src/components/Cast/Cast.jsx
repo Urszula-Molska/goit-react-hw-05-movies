@@ -13,7 +13,7 @@ export const Cast = () => {
       setMovieCast(movieCast.cast);
     };
     getCast(movieId);
-  }, []);
+  }, [movieId]);
 
   return (
     <>

@@ -78,7 +78,3 @@ Movies.propTypes = {
   moviesByTerm: PropTypes.arrayOf(PropTypes.objectOf),
 };
 export default Movies;
-
-/*onClick={() => {
-                      getMovieById(movie.id);
-                    }}*/

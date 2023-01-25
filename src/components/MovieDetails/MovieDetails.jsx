@@ -1,7 +1,6 @@
 import { Suspense, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Outlet, useLocation } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import { fetchDetails } from '../Api/Api.js';
 
@@ -27,7 +26,7 @@ export const MovieDetails = () => {
 
   useEffect(() => {
     getMovieById(movieId);
-  }, []);
+  }, [movieId]);
 
   return (
     <>

@@ -35,5 +35,4 @@ Home.propTypes = {
 };
 export default Home;
 
-/*onClick={() => {
-getMovieById(movie.id) }}*/
+/
