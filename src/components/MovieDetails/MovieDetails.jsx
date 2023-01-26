@@ -1,8 +1,7 @@
 import { Suspense, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import css from './MovieDetails.module.css';
-import { fetchDetails } from '../Api/Api.js';
+import { fetchDetails } from '../../Api/Api.js';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState({});
@@ -11,8 +10,10 @@ export const MovieDetails = () => {
 
   const location = useLocation();
   const date = new Date(movie.release_date);
+
   const releaseDate = date.getFullYear();
   const image = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+
   const backLinkHrefHome = location.state?.from ?? '/';
   const backLinkHrefMovies = location.state?.from ?? '/movies';
 
@@ -66,8 +67,5 @@ export const MovieDetails = () => {
     </>
   );
 };
-MovieDetails.propTypes = {
-  movie: PropTypes.object,
-  movieCategories: PropTypes.string,
-};
+
 export default MovieDetails;

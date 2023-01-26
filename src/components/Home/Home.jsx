@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { fetchTrending } from '../Api/Api.js';
+import { fetchTrending } from '../../Api/Api.js';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -29,8 +28,5 @@ const Home = () => {
     </>
   );
 };
-Home.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object),
-  getMovieById: PropTypes.func,
-};
+
 export default Home;

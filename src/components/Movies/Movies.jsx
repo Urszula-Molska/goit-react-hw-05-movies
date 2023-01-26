@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import css from './Movies.module.css';
-import { fetchSearch } from '../Api/Api.js';
+import { fetchSearch } from '../../Api/Api.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const Movies = () => {
@@ -71,10 +70,4 @@ export const Movies = () => {
   );
 };
 
-Movies.propTypes = {
-  query: PropTypes.string,
-  handleSubmit: PropTypes.func,
-  getMovieById: PropTypes.func,
-  moviesByTerm: PropTypes.arrayOf(PropTypes.objectOf),
-};
 export default Movies;

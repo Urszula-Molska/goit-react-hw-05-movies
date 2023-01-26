@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchReviews } from '../Api/Api.js';
+import { fetchReviews } from '../../Api/Api.js';
 import { nanoid } from 'nanoid';
 
 export const Reviews = () => {
@@ -41,7 +40,5 @@ export const Reviews = () => {
     </>
   );
 };
-Reviews.propTypes = {
-  movieReviews: PropTypes.arrayOf(PropTypes.object),
-};
+
 export default Reviews;

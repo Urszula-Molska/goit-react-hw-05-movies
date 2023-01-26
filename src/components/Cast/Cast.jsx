@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { fetchCast } from '../Api/Api.js';
+import { nanoid } from 'nanoid';
+import { fetchCast } from '../../Api/Api.js';
 
 export const Cast = () => {
   const { movieId } = useParams();
   const [movieCast, setMovieCast] = useState([]);
+
+  const createId = () => {
+    const id = nanoid();
+    return id;
+  };
 
   useEffect(() => {
     const getCast = async () => {
@@ -20,7 +25,7 @@ export const Cast = () => {
       <h2>Cast</h2>
       <ul>
         {movieCast.map(cast => (
-          <li key={cast.id} style={{ listStyle: 'none' }}>
+          <li key={createId()} style={{ listStyle: 'none' }}>
             <img
               style={{ width: '200px' }}
               src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
@@ -35,7 +40,4 @@ export const Cast = () => {
   );
 };
 
-Cast.propTypes = {
-  movieCast: PropTypes.arrayOf(PropTypes.objectOf),
-};
 export default Cast;
